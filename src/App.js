@@ -1,8 +1,9 @@
-
 import React, { useState } from 'react';
-import RecipeList from './recipies/RecipeList'; 
-import SearchBar from './recipies/SearchBar'; 
-import RecipeDetail from './recipies/RecipeDetails'; 
+import { BrowserRouter as Router } from 'react-router-dom';
+import { UserProvider } from './context/userContext'; 
+import Navbar from './components/Navbar/Navbar'; 
+import RecipesRoutes from './routes/recipes'; 
+import Login from './components/Login/Login';  
 
 const App = () => {
     const [recipes, setRecipes] = useState([]);
@@ -19,14 +20,14 @@ const App = () => {
     };
 
     return (
-        <div>
-            <SearchBar onSearch={fetchRecipes} />
-            {selectedRecipeId ? (
-                <RecipeDetail recipeId={selectedRecipeId} />
-            ) : (
-                <RecipeList recipes={recipes} onSelect={handleSelectRecipe} />
-            )}
-        </div>
+        <UserProvider>
+            <Router>
+                <div>
+                    <Navbar />
+                    <RecipesRoutes />
+                </div>
+            </Router>
+        </UserProvider>
     );
 };
 
