@@ -16,11 +16,11 @@ const RecipeCategories = () => {
     }, []);
 
     return (
-        <div>
+        <div className="categories-container">
             <h1>Recipe Categories</h1>
             <ul>
                 {categories.map(category => (
-                    <li key={category.idCategory}>
+                    <li key={category.idCategory} className="category-item">
                         <Link to={`/recipes/${category.strCategory}`}>{category.strCategory}</Link>
                     </li>
                 ))}

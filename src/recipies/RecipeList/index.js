@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './styles.css';
 
 const RecipeList = () => {
@@ -19,13 +19,18 @@ const RecipeList = () => {
     }, [category]);
 
     return (
-        <div>
+        <div className="recipe-list-container">
             <h1>{category} Recipes</h1>
-            <ul>
+            <div className="recipe-grid">
                 {recipes.map(recipe => (
-                    <li key={recipe.idMeal}>{recipe.strMeal}</li>
+                    <div key={recipe.idMeal} className="recipe-item">
+                        <Link to={`/recipes/details/${recipe.idMeal}`}>
+                            <img src={recipe.strMealThumb} alt={recipe.strMeal} />
+                            <h2>{recipe.strMeal}</h2>
+                        </Link>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };

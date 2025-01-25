@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { UserProvider } from './context/userContext'; 
-import Navbar from './components/Navbar'; 
+import Navbar from './components/Navbar/Navbar'; 
 import RecipesRoutes from './routes/recipes'; 
-import Login from './components/Login'; 
+import Login from './components/Login/Login';  
 
 const App = () => {
     const [recipes, setRecipes] = useState([]);

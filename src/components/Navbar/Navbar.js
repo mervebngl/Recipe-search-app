@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useUser } from '../context/userContext'; 
+import { useUser } from '../../context/userContext'; 
 import './styles.css';
 
 const Navbar = () => {
     const { user, logout } = useUser(); 
 
     return (
-        <nav>
+        <nav className="navbar">
             <Link to="/">Home</Link>
             <Link to="/search">Search</Link>
             <Link to="/recipes/categories">Categories</Link>

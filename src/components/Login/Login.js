@@ -1,29 +1,44 @@
-import React, { useContext } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { UserProvider, useUser } from '../context/userContext'; 
-import RecipeCategories from '../recipies/RecipeCategories'; 
-import CreateRecipe from '../components/CreateRecipe'; 
-import Login from '../components/Login/Login'; 
-import RecipeList from '../recipies/RecipeList'; 
-import RecipeDetails from '../recipies/RecipeDetails'; 
-import './styles.css';
+import React, { useState } from 'react';
+import { useUser } from '../../context/userContext'; 
+import './styles.css'; 
 
-const ProtectedRoute = ({ element }) => {
-    const { user } = useUser(); 
-    return user ? element : <Navigate to="/login" />; 
-};
+const Login = () => {
+    const { login } = useUser();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-const RecipesRoutes = () => {
+    const handleLogin = (e) => {
+        e.preventDefault();
+        
+        if (email === 'user@example.com' && password === 'password') {
+            login({ email });
+        } else {
+            alert('Invalid credentials');
+        }
+    };
+
     return (
-        <Routes>
-            <Route path="/recipes/categories" element={<RecipeCategories />} />
-            <Route path="/recipes/create" element={<ProtectedRoute element={<CreateRecipe />} />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/recipes" element={<RecipeList />} />
-            <Route path="/recipes/:category" element={<RecipeList />} />
-            <Route path="/recipes/details/:id" element={<RecipeDetails />} />
-        </Routes>
+        <div className="login-container">
+            <h1>Login</h1>
+            <form onSubmit={handleLogin}>
+                <input
+                    type="email"
+                    placeholder="Email Address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                <button type="submit">Login</button>
+            </form>
+        </div>
     );
 };
 
-export default RecipesRoutes;
+export default Login;
