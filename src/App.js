@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { UserProvider } from './context/userContext'; 
-import Navbar from './components/Navbar/Navbar'; 
-import RecipesRoutes from './routes/recipes'; 
-import Login from './components/Login/Login';  
+import Navbar from './components/Navbar/Navbar';  
+import Login from './components/User/Login';  
+import CreateRecipe from './components/Recipes/CreateRecipe';  
+import AppRouter from './routes/AppRouter'; 
 
 const App = () => {
     const [recipes, setRecipes] = useState([]);
@@ -24,7 +25,7 @@ const App = () => {
             <Router>
                 <div>
                     <Navbar />
-                    <RecipesRoutes />
+                    <AppRouter />
                 </div>
             </Router>
         </UserProvider>

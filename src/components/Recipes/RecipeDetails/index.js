@@ -10,7 +10,7 @@ const RecipeDetail = () => {
         const fetchRecipeDetail = async () => {
             const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
             const data = await response.json();
-            setRecipe(data.meals[0]);
+            setRecipe(data.meals ? data.meals[0] : null); 
         };
 
         if (id) {
@@ -20,7 +20,8 @@ const RecipeDetail = () => {
 
     if (!recipe) return <div>Loading...</div>;
 
-    const instructions = recipe.strInstructions.split('.').filter(Boolean);
+    
+    const instructions = recipe.strInstructions ? recipe.strInstructions.split('.').filter(Boolean) : [];
 
     return (
         <div className="recipe-detail">
@@ -35,9 +36,13 @@ const RecipeDetail = () => {
                     ))}
             </ul>
             <h3>Instructions</h3>
-            {instructions.map((instruction, index) => (
-                <p key={index}>{instruction.trim()}.</p>
-            ))}
+            {instructions.length > 0 ? (
+                instructions.map((instruction, index) => (
+                    <p key={index}>{instruction.trim()}.</p>
+                ))
+            ) : (
+                <p>No instructions available.</p> 
+            )}
         </div>
     );
 };
