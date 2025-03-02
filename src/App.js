@@ -3,9 +3,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { UserProvider } from './context/userContext'; 
 import Navbar from './components/Navbar/Navbar';  
 import Login from './components/User/Login';  
-import CreateRecipe from './components/Recipes/CreateRecipe';  
 import AppRouter from './routes/AppRouter'; 
 import './index.css';
+import { RecipeProvider } from './context/RecipeContext'; 
 
 const App = () => {
     const [recipes, setRecipes] = useState([]);
@@ -23,12 +23,14 @@ const App = () => {
 
     return (
         <UserProvider>
-            <Router>
-                <div>
-                    <Navbar />
-                    <AppRouter />
-                </div>
-            </Router>
+            <RecipeProvider> 
+                <Router>
+                    <div>
+                        <Navbar />
+                        <AppRouter />
+                    </div>
+                </Router>
+            </RecipeProvider>
         </UserProvider>
     );
 };
