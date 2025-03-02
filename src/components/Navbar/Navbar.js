@@ -10,7 +10,7 @@ const Navbar = () => {
         <nav className="navbar">
             <Link to="/">Home</Link>
             <Link to="/search">Search</Link>
-            <Link to="/recipes/categories">Categories</Link>
+            {user && <Link to="/recipes/categories">Categories</Link>}
             {user ? (
                 <>
                     <Link to="/recipes/create">Create New Recipe</Link>

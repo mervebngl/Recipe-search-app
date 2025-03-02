@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import Login from './components/User/Login';  
 import CreateRecipe from './components/Recipes/CreateRecipe';  
 import AppRouter from './routes/AppRouter'; 
+import './index.css';
 
 const App = () => {
     const [recipes, setRecipes] = useState([]);
